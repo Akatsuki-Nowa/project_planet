@@ -1,4 +1,5 @@
 package planet;
+
 import java.io.IOException;
 
 import javax.servlet.ServletException;
@@ -10,26 +11,26 @@ import dao.LoginDao;
 
 @WebServlet("/main")
 public class LoginController extends BaseHttpServlet {
-	
-	private static final long serialVersionUID = 1L;
-	
-	String jspName = "MainMenu";
-	
-	@Override
+
+    private static final long serialVersionUID = 1L;
+
+    String jspName = "MainMenu";
+
+    @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp)
             throws ServletException, IOException {
-		LoginDao dao = new LoginDao();
-		dao.executeQuery();
-		super.setJspName(jspName);
-		super.doPost(req,resp);
+
+        LoginDao dao = new LoginDao();
+        dao.executeQuery();
+        super.setJspName(jspName);
+        super.doPost(req,resp);
     }
-	
-	@Override
+
+    @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp)
             throws ServletException, IOException {
-		super.setJspName(jspName);
-		super.doGet(req, resp);
+
+        super.setJspName(jspName);
+        super.doGet(req, resp);
     }
-	
-	
 }

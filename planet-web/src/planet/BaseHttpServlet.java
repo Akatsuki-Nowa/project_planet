@@ -10,19 +10,16 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 public class BaseHttpServlet extends HttpServlet {
-    /**
-	 * 
-	 */
-	private static final long serialVersionUID = 1L;
-	
-	private String jspName = null;
-	
-	protected void setJspName(String jspName){
-		this.jspName = "/" + jspName + ".jsp";
-	}
-	
-	
-	@Override
+
+    private static final long serialVersionUID = 1L;
+
+    private String jspName = null;
+
+    protected void setJspName(String jspName){
+        this.jspName = "/" + jspName + ".jsp";
+    }
+
+    @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp)
             throws ServletException, IOException {
 
@@ -30,22 +27,19 @@ public class BaseHttpServlet extends HttpServlet {
         RequestDispatcher dispatcher = req.getRequestDispatcher(view);
         dispatcher.forward(req, resp);
     }
-	
-	@Override
+
+    @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp)
             throws ServletException, IOException {
 
         String view = this.jspName;
-        
         String key = "value";
-        
-		String vals = req.getParameter(key);
-    
-      //リクエストスコープにセット
+        String vals = req.getParameter(key);
+
+        //リクエストスコープにセット
         req.setAttribute(key, vals);
-        
+
         RequestDispatcher dispatcher = req.getRequestDispatcher(view);
         dispatcher.forward(req, resp);
     }
-
 }
