@@ -13,33 +13,36 @@ public class BaseHttpServlet extends HttpServlet {
 
     private static final long serialVersionUID = 1L;
 
-    private String jspName = null;
-
-    protected void setJspName(String jspName){
-        this.jspName = "/" + jspName + ".jsp";
-    }
-
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp)
             throws ServletException, IOException {
 
-        String view = this.jspName;
-        RequestDispatcher dispatcher = req.getRequestDispatcher(view);
+    	String jspName = this.httpMethodPost() ;
+    	
+        RequestDispatcher dispatcher = req.getRequestDispatcher( "/" + jspName + ".jsp" ) ;
         dispatcher.forward(req, resp);
+    }
+    
+    protected String httpMethodPost(){
+    	throw new RuntimeException( "This method need override by extended class." ) ;
     }
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp)
             throws ServletException, IOException {
 
-        String view = this.jspName;
         String key = "value";
         String vals = req.getParameter(key);
 
-        //リクエストスコープにセット
         req.setAttribute(key, vals);
 
-        RequestDispatcher dispatcher = req.getRequestDispatcher(view);
+    	String jspName = this.httpMethodGet() ;
+    	
+        RequestDispatcher dispatcher = req.getRequestDispatcher( "/" + jspName + ".jsp" ) ;
         dispatcher.forward(req, resp);
+    }
+    
+    protected String httpMethodGet(){
+    	throw new RuntimeException( "This method need override by extended class." ) ;
     }
 }
