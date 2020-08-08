@@ -1,24 +1,24 @@
-package planet;
+package planet ;
 
-import java.io.IOException;
-import java.lang.RuntimeException;
+import java.io.IOException ;
+import java.lang.RuntimeException ;
 
-import javax.servlet.ServletException;
-import javax.servlet.http.HttpServlet;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
+import javax.servlet.ServletException ;
+import javax.servlet.http.HttpServlet ;
+import javax.servlet.http.HttpServletRequest ;
+import javax.servlet.http.HttpServletResponse ;
 
 public class BaseAjaxGenerator extends HttpServlet {
 
-    private static final long serialVersionUID = 1L;
+    private static final long serialVersionUID = 1L ;
 
-    private String paramsMap;
+    private String paramsMap ;
 
     @Override
     public void doPost( HttpServletRequest req, HttpServletResponse res )
             throws ServletException, IOException {
 
-        try {
+        try{
             String params = req.getParameter( "params" ) ;
             paramsMap = params ;
 
@@ -26,7 +26,7 @@ public class BaseAjaxGenerator extends HttpServlet {
             
             res.getWriter().print( this.makeAjaxResult() ) ;
 
-        } catch(Exception e) {
+        }catch( Exception e ){
             e.printStackTrace() ;
         }
     }

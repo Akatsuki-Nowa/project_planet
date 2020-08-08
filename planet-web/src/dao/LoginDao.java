@@ -1,37 +1,39 @@
-package dao;
+package dao ;
 
-import java.util.List;
-import java.util.Map;
+import java.sql.SQLException ;
 
-import planet.DBSample;
-import planet.SQLConst;
+import java.util.List ;
+import java.util.ArrayList ;
+import java.util.Map ;
+import planet.SQLConstants ;
+import dto.LoginDto ;
+import planet.DataBaseAccessor ;
 
-public class LoginDao{
-	private String id = null;
-	private String password = null;
+public class LoginDao {
 	
+	private DataBaseAccessor accessor = new DataBaseAccessor() ;
 	
-	public String getId() {
-		return this.id;
-	}
-	
-	public String getPassword() {
-		return this.password;
-	}
-	
-	
-	public void executeQuery() {
-		String[] keys = {"id","password"};
-		List<Map<String,String>> entryMapList = DBSample.dbConnect(SQLConst.loginInfo,keys);
+	public List<LoginDto> getAccountData(){
+		List<LoginDto> result = new ArrayList<>() ;
+		List<Map<String, String>> dataList ;
+		String[] keys = { "id", "password" } ;
 		
-		entryMapList.forEach(entryMap ->{
-			for(Map.Entry<String, String> entry : entryMap.entrySet()) {
-			    System.out.println(entry.getKey());
-			    System.out.println(entry.getValue());
+		try{
+			accessor.connect() ;
+			dataList = this.accessor.select( SQLConstants.LOGIN_INFO, keys ) ;
+			accessor.disconnect() ;
+			while( !dataList.isEmpty() ){
+				LoginDto dto = new LoginDto() ;
+				for( Map<String, String> map: dataList ){
+					dto.setId( map.get( "id" ) ) ;
+					dto.setPassword( map.get( "password" ) ) ;
+				}
+				result.add( dto ) ;
 			}
-		});
-		System.out.print("mapListの件数は");
-		System.out.print(entryMapList.size());
+		}catch( SQLException e ) {
+			e.printStackTrace() ;
+		}
+		
+		return result ;
 	}
-	
 }

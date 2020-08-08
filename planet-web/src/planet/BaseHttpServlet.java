@@ -1,26 +1,25 @@
 package planet;
 
-import java.io.IOException;
-import java.io.PrintWriter;
+import java.io.IOException ;
 
-import javax.servlet.RequestDispatcher;
-import javax.servlet.ServletException;
-import javax.servlet.http.HttpServlet;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
+import javax.servlet.RequestDispatcher ;
+import javax.servlet.ServletException ;
+import javax.servlet.http.HttpServlet ;
+import javax.servlet.http.HttpServletRequest ;
+import javax.servlet.http.HttpServletResponse ;
 
 public class BaseHttpServlet extends HttpServlet {
 
-    private static final long serialVersionUID = 1L;
+    private static final long serialVersionUID = 1L ;
 
     @Override
-    protected void doPost(HttpServletRequest req, HttpServletResponse resp)
+    protected void doPost( HttpServletRequest req, HttpServletResponse resp )
             throws ServletException, IOException {
 
     	String jspName = this.httpMethodPost() ;
     	
         RequestDispatcher dispatcher = req.getRequestDispatcher( "/" + jspName + ".jsp" ) ;
-        dispatcher.forward(req, resp);
+        dispatcher.forward( req, resp ) ;
     }
     
     protected String httpMethodPost(){
@@ -28,18 +27,18 @@ public class BaseHttpServlet extends HttpServlet {
     }
 
     @Override
-    protected void doGet(HttpServletRequest req, HttpServletResponse resp)
+    protected void doGet( HttpServletRequest req, HttpServletResponse resp )
             throws ServletException, IOException {
 
-        String key = "value";
-        String vals = req.getParameter(key);
+        String key = "value" ;
+        String vals = req.getParameter( key ) ;
 
-        req.setAttribute(key, vals);
+        req.setAttribute( key, vals ) ;
 
     	String jspName = this.httpMethodGet() ;
     	
         RequestDispatcher dispatcher = req.getRequestDispatcher( "/" + jspName + ".jsp" ) ;
-        dispatcher.forward(req, resp);
+        dispatcher.forward( req, resp ) ;
     }
     
     protected String httpMethodGet(){
