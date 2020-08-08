@@ -1,4 +1,4 @@
-package planet;
+package planet ;
 
 import java.io.IOException ;
 

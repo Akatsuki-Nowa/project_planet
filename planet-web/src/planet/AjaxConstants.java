@@ -1,4 +1,4 @@
-package planet;
+package planet ;
 
 public class AjaxConstants {
 	
