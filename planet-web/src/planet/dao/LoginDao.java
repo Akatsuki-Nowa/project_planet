@@ -1,4 +1,4 @@
-package dao ;
+package planet.dao ;
 
 import java.sql.SQLException ;
 
@@ -6,7 +6,7 @@ import java.util.List ;
 import java.util.ArrayList ;
 import java.util.Map ;
 import planet.SQLConstants ;
-import dto.LoginDto ;
+import planet.dto.LoginDto;
 import planet.DataBaseAccessor ;
 
 public class LoginDao {
@@ -22,14 +22,15 @@ public class LoginDao {
 			accessor.connect() ;
 			dataList = this.accessor.select( SQLConstants.LOGIN_INFO, keys ) ;
 			accessor.disconnect() ;
-			while( !dataList.isEmpty() ){
-				LoginDto dto = new LoginDto() ;
-				for( Map<String, String> map: dataList ){
-					dto.setId( map.get( "id" ) ) ;
-					dto.setPassword( map.get( "password" ) ) ;
-				}
-				result.add( dto ) ;
+			if( dataList.isEmpty() ){
+				return result ;
 			}
+			LoginDto dto = new LoginDto() ;
+			for( Map<String, String> map: dataList ){
+				dto.setId( map.get( "id" ) ) ;
+				dto.setPassword( map.get( "password" ) ) ;
+			}
+			result.add( dto ) ;
 		}catch( SQLException e ) {
 			e.printStackTrace() ;
 		}

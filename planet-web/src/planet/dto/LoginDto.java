@@ -1,4 +1,4 @@
-package dto ;
+package planet.dto ;
 
 public class LoginDto{
 	
