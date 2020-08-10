@@ -1,14 +1,14 @@
-package planet ;
+package planet.json ;
 
 import java.util.List ;
 import java.util.ArrayList ;
 import java.util.Map ;
 
-public class JsonMap {
+public class JsonMapList {
 	
 	private List<Map<String, String>> mapList = new ArrayList<>() ;
 	
-	public JsonMap( List<Map<String, String>> mapList ){
+	public JsonMapList( List<Map<String, String>> mapList ){
 		this.mapList = mapList ;
 	}
 	
@@ -16,11 +16,11 @@ public class JsonMap {
 		return this.mapList ;
 	}
 	
-	public String toJsonString(){
+	public JsonString toJsonString(){
 		String s = "{" ;
 		
 		if( this.mapList.isEmpty() ){
-			return "{}" ;
+			return new JsonString() ;
 		}
 		for( Map<String, String> map: this.mapList ){
 			for( String key: map.keySet() ){
@@ -28,6 +28,6 @@ public class JsonMap {
 			}
 		}
 		
-		return s.replaceAll( ",$", "" ) + "}" ;
+		return new JsonString( s.replaceAll( ",$", "" ) + "}" ) ;
 	}
 }
