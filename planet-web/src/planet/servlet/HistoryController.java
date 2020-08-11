@@ -1,6 +1,8 @@
-package planet;
+package planet.servlet;
 
 import javax.servlet.annotation.WebServlet;
+
+import planet.base.BaseHttpServlet;
 
 @WebServlet("/History")
 public class HistoryController extends BaseHttpServlet {

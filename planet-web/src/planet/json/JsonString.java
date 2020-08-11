@@ -23,11 +23,7 @@ public class JsonString {
 	
 	public JsonMapList toJsonMapList(){
 		List<Map<String, String>> jsonMapList = new ArrayList<>() ;
-		String s = this.json
-				.replaceAll( "^[{]", "" )
-				.replaceAll( "[}]$", "" )
-				.replaceAll( "\"", "" )
-				.replaceAll( " ", "" ) ;
+		String s = this.json.replaceAll( "[{ \"}]", "" ) ;
 	
 		for( String object: s.split( "," ) ){
 			String[] data = object.split( ":" ) ;

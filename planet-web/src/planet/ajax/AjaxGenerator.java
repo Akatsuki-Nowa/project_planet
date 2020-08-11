@@ -1,6 +1,9 @@
-package planet ;
+package planet.ajax ;
 
 import javax.servlet.annotation.WebServlet ;
+
+import planet.base.BaseAjaxGenerator;
+import planet.constant.AjaxConstants;
 
 @WebServlet( "/AjaxGenerator" )
 public class AjaxGenerator extends BaseAjaxGenerator {

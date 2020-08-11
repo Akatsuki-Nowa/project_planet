@@ -1,9 +1,11 @@
-package planet ;
+package planet.servlet ;
 
 import javax.servlet.annotation.WebServlet ;
 import java.util.List;
-import dao.LoginDao ;
-import dto.LoginDto ;
+
+import planet.base.BaseHttpServlet;
+import planet.dao.LoginDao;
+import planet.dto.LoginDto;
 
 @WebServlet( "/main" )
 public class LoginController extends BaseHttpServlet {
