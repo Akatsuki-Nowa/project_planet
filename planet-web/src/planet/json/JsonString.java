@@ -1,9 +1,7 @@
 package planet.json ;
 
-import java.util.ArrayList ;
-import java.util.HashMap ;
-import java.util.List ;
 import java.util.Map ;
+import java.util.HashMap ;
 
 public class JsonString {
 	
@@ -21,17 +19,15 @@ public class JsonString {
 		return this.json ;
 	}
 	
-	public JsonMapList toJsonMapList(){
-		List<Map<String, String>> jsonMapList = new ArrayList<>() ;
+	public JsonMap toJsonMap(){
+		Map<String, String> jsonMap= new HashMap<>() ;
 		String s = this.json.replaceAll( "[{ \"}]", "" ) ;
 	
 		for( String object: s.split( "," ) ){
 			String[] data = object.split( ":" ) ;
-			Map<String, String> map = new HashMap<>() ;
-			map.put( data[0], data[1] ) ;
-			jsonMapList.add( map ) ;
+			jsonMap.put( data[0], data[1] ) ;
 		}
 		
-		return new JsonMapList( jsonMapList ) ;
+		return new JsonMap( jsonMap ) ;
 	}
 }
